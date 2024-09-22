@@ -18,7 +18,7 @@ class CustomElevetedutton extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: btnColor,
-          padding: const EdgeInsets.all(14),
+          padding: const EdgeInsets.all(12),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
