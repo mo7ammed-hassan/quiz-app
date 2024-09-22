@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizapp/core/utils/app_colors.dart';
 import 'package:quizapp/features/home/presentation/views/widgets/custom_eleveted_button.dart';
+import 'package:quizapp/features/quiz/presentation/views/quiz_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -37,9 +38,15 @@ class HomeView extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              const CustomElevetedutton(
+              CustomElevetedutton(
                 title: 'Start Quiz',
                 btnColor: secoundryBtnColor,
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QuizView(),
+                  ),
+                ),
               ),
               const SizedBox(height: 20),
             ],

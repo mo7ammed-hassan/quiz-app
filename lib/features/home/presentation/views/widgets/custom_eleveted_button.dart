@@ -5,15 +5,17 @@ class CustomElevetedutton extends StatelessWidget {
     super.key,
     required this.title,
     required this.btnColor,
+    required this.onPressed,
   });
   final String title;
   final Color btnColor;
+  final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: btnColor,
           padding: const EdgeInsets.all(14),
