@@ -28,7 +28,6 @@ class QuizCard extends StatelessWidget {
               color: Colors.white,
             ),
             child: CircularCountDown(
-              totalTime: 30,
               onTimerEnded: onTimerEnd,
             ),
           ),

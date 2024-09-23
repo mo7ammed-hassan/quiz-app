@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:quizapp/core/utils/app_colors.dart';
+import 'package:quizapp/features/quiz/controller/providers/circular_countdown_provider.dart';
+import 'package:quizapp/features/quiz/controller/providers/quiz_provider.dart';
 
 class ScoreView extends StatelessWidget {
   const ScoreView(
@@ -11,7 +14,16 @@ class ScoreView extends StatelessWidget {
     return Scaffold(
       backgroundColor: quizaBackgroundColor,
       appBar: AppBar(
-        title: const Text('Scoreboard'),
+        leading: IconButton(
+          onPressed: () {
+            Provider.of<QuizProvider>(context, listen: false).resetQuiz();
+            Provider.of<CircularCountDownProvider>(context).resetTimer();
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios,
+          ),
+        ),
       ),
       body: Center(
         child: Column(
