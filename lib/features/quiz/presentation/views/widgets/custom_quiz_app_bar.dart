@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 class CustomQuizAppBar extends StatelessWidget {
   const CustomQuizAppBar({
     super.key,
+    required this.currentQuestionIndex,
+    required this.numOfQuestions,
   });
-
+  final int currentQuestionIndex;
+  final int numOfQuestions;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,9 +35,9 @@ class CustomQuizAppBar extends StatelessWidget {
             ],
           ),
           const SizedBox(width: 20),
-          const Text(
-            '7/10',
-            style: TextStyle(
+          Text(
+            '${currentQuestionIndex + 1}/$numOfQuestions',
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,
             ),

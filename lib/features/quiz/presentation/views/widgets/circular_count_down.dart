@@ -5,8 +5,9 @@ import 'package:quizapp/core/utils/app_colors.dart';
 
 class CircularCountDown extends StatefulWidget {
   final int totalTime;
-
-  const CircularCountDown({super.key, required this.totalTime});
+  final VoidCallback onTimerEnded;
+  const CircularCountDown(
+      {super.key, required this.totalTime, required this.onTimerEnded});
 
   @override
   State<CircularCountDown> createState() => _CircularCountDownState();
@@ -33,6 +34,7 @@ class _CircularCountDownState extends State<CircularCountDown> {
         });
       } else {
         _timer.cancel();
+        widget.onTimerEnded();
       }
     });
   }

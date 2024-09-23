@@ -5,8 +5,11 @@ import 'package:quizapp/features/quiz/presentation/views/widgets/question_conati
 class QuizCard extends StatelessWidget {
   const QuizCard({
     super.key,
+    required this.question,
+    required this.onTimerEnd,
   });
-
+  final String question;
+  final VoidCallback onTimerEnd;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -24,19 +27,20 @@ class QuizCard extends StatelessWidget {
               shape: CircleBorder(),
               color: Colors.white,
             ),
-            child: const CircularCountDown(
+            child: CircularCountDown(
               totalTime: 30,
+              onTimerEnded: onTimerEnd,
             ),
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(
+        Padding(
+          padding: const EdgeInsets.symmetric(
             vertical: (229 / 2) - 50,
             horizontal: 18,
           ),
           child: Text(
-            'In what year did the United States host the FIFA World Cup for the first time?',
-            style: TextStyle(
+            question,
+            style: const TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 16,
             ),
