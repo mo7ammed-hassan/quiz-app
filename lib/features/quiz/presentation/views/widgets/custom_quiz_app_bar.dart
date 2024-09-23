@@ -28,7 +28,7 @@ class CustomQuizAppBar extends StatelessWidget {
               const Text(
                 'Previous',
                 style: TextStyle(
-                  fontSize: 12,
+                  fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
               ),

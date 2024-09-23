@@ -19,8 +19,21 @@ class QuizView extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
-          child:
-              Consumer<QuizProvider>(builder: (context, quizProvider, child) {
+          child: Consumer2<QuizProvider, CircularCountDownProvider>(
+              builder: (context, quizProvider, countDownProvider, child) {
+            if (countDownProvider.onTimerEnded) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ScoreView(
+                      score: quizProvider.score,
+                      numOfQuestions: quizProvider.questions.length,
+                    ),
+                  ),
+                );
+              });
+            }
             return Column(
               children: [
                 CustomQuizAppBar(
@@ -30,22 +43,6 @@ class QuizView extends StatelessWidget {
                 QuizCard(
                   question: quizProvider
                       .questions[quizProvider.currentQuestionIndex].question,
-                  onTimerEnd: () {
-                    Provider.of<CircularCountDownProvider>(context,
-                            listen: false)
-                        .stopTimer();
-                    Provider.of<CircularCountDownProvider>(context,
-                            listen: false)
-                        .dispose();
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) {
-                        return ScoreView(
-                          score: quizProvider.score,
-                          numOfQuestions: quizProvider.questions.length,
-                        );
-                      },
-                    ));
-                  },
                 ),
                 const SizedBox(height: 32),
                 Expanded(
@@ -85,9 +82,7 @@ class QuizView extends StatelessWidget {
                   btnColor: primaryColor,
                   onPressed: () {
                     if (quizProvider.isQuizComplete()) {
-                      Provider.of<CircularCountDownProvider>(context,
-                              listen: false)
-                          .stopTimer();
+                      countDownProvider.stopTimer();
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(

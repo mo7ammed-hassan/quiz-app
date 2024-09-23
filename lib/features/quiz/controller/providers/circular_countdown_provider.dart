@@ -6,6 +6,7 @@ class CircularCountDownProvider with ChangeNotifier {
   late Timer _timer;
   int _remainingTime;
   double _progress;
+  bool onTimerEnded = false;
 
   CircularCountDownProvider({required this.totalTime})
       : _remainingTime = totalTime,
@@ -19,11 +20,11 @@ class CircularCountDownProvider with ChangeNotifier {
       if (_remainingTime > 0) {
         _remainingTime--;
         _progress = _remainingTime / totalTime;
-        notifyListeners();
       } else {
         _timer.cancel();
-        //onTimerEnded();
+        onTimerEnded = true;
       }
+      notifyListeners();
     });
   }
 

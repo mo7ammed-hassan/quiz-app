@@ -6,10 +6,9 @@ class QuizCard extends StatelessWidget {
   const QuizCard({
     super.key,
     required this.question,
-    required this.onTimerEnd,
   });
   final String question;
-  final VoidCallback onTimerEnd;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -27,9 +26,7 @@ class QuizCard extends StatelessWidget {
               shape: CircleBorder(),
               color: Colors.white,
             ),
-            child: CircularCountDown(
-              onTimerEnded: onTimerEnd,
-            ),
+            child: const CircularCountDown(),
           ),
         ),
         Padding(

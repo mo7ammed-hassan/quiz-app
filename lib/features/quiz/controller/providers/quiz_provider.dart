@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:quizapp/features/quiz/presentation/models/question_model.dart';
 
@@ -42,6 +41,7 @@ class QuizProvider extends ChangeNotifier {
     _selectedAnswerIndex = null;
     _isCorrectAnswer = null;
     _score = 0;
+
     notifyListeners();
   }
 
