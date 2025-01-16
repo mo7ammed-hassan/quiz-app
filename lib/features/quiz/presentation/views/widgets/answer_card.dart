@@ -20,7 +20,7 @@ class AnswerCard extends StatelessWidget {
     Color getBackgroundColor() {
       if (!showFeedback) return Colors.white;
       if (isSelected) {
-        return isCorrect ? correctAnswerColor : Colors.red.withOpacity(0.5);
+        return isCorrect ? correctAnswerColor : Colors.red.shade400;
       }
       return Colors.white;
     }
